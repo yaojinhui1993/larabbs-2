@@ -11,12 +11,12 @@
                     <h5>
                         <strong>个人简介</strong>
                     </h5>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum nihil iure optio velit suscipit amet eligendi accusantium eveniet quia deleniti perspiciatis magni reprehenderit voluptatibus nisi tenetur ratione, vero repellendus magnam!</p>
+                    <p>{{ $user->introduction }}</p>
                     <hr>
                     <h5>
                         <strong>注册于</strong>
                     </h5>
-                    <p>January 01 1901</p>
+                    <p>{{ $user->created_at->diffForHumans() }}</p>
                 </div>
             </div>
         </div>
