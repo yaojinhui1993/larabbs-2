@@ -3,13 +3,13 @@
 namespace App\Handlers;
 
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class ImageUploadHandler
 {
-
     protected $allowedExt = ['png', 'jpg', 'jpeg', 'gif'];
 
-    public function save($file, $folder, $filePrefix)
+    public function save($file, $folder, $filePrefix, $maxWidth = false)
     {
         $timestamps = time();
         $random = Str::random(10);
@@ -28,8 +28,25 @@ class ImageUploadHandler
 
         $file->move($uploadPath, $filename);
 
+        if ($maxWidth && $extension != 'gif') {
+            $this->reduceSize("{$uploadPath}/{$filename}", $maxWidth);
+        }
+
         return [
             'path' => config('app.url') . "/{$folderName}/$filename"
         ];
+    }
+
+    public function reduceSize($filePath, $maxWidth)
+    {
+        $image = Image::make($filePath);
+
+        $image->resize($maxWidth, null, function ($constraint) {
+            $constraint->aspectRatio();
+
+            $constraint->upsize();
+        });
+
+        $image->save();
     }
 }
