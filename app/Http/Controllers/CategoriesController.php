@@ -10,7 +10,10 @@ class CategoriesController extends Controller
 {
     public function show(Request $request, Category $category)
     {
-        $topics = Topic::where('category_id', $category->id)->paginate(20);
+        $topics = Topic::
+            withOrder($request->order)
+            ->where('category_id', $category->id)
+            ->paginate(20);
 
         return view('topics.index', ['topics' => $topics, 'category' => $category]);
     }
