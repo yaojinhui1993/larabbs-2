@@ -69,8 +69,17 @@
     <script src="{{ asset('js/simditor.js') }}" type="text/javascript"></script>
     <script>
         var editor = new Simditor({
-        textarea: $('#editor')
-        //optional options
+            textarea: $('#editor'),
+            upload: {
+                url: "{{ route('topics.uploadImage') }}",
+                params: {
+                    _token: "{{ csrf_token() }}",
+                },
+                fileKey: 'uploadFile',
+                connectionCount: 3,
+                leaveConfirm: '文件上传中，关闭页面将取消上传。',
+            },
+            pasteImage: true,
         });
     </script>
 @endsection
