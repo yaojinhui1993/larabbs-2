@@ -23,8 +23,8 @@
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
-            <div class="card">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content" >
+            <div class="card" style="padding-left: 16px; padding-right: 16px;">
                 <div class="card-body">
                     <h1 class="text-center mt-3 mb-3">{{ $topic->title }}</h1>
                 </div>
@@ -40,7 +40,7 @@
                     {!! $topic->body !!}
                 </div>
 
-                <div class="operate">
+                <div class="operate" style="margin-bottom: 16px">
                     <hr>
                     <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
                         <i class="far fa-edit"></i>编辑
