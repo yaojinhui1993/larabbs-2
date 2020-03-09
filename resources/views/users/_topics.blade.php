@@ -3,7 +3,7 @@
     <ul class="list-group mt-4 border-0">
         @foreach($topics as $topic)
             <li class="list-group-item pl-2 pr-2 border-right-0 border-left-0 {{ $loop->first ? 'border-top-0' : '' }}">
-                <a href="{{ route('topics.show', $topic->id) }}" class="">{{ $topic->title }}</a>
+                <a href="{{ route('topics.show', $topic->link()) }}" class="">{{ $topic->title }}</a>
                 <span class="meta float-right text-secondary">
                     {{ $topic->reply_count }} 回复
                     <span>·</span>
