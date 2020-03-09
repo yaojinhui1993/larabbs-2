@@ -12,7 +12,7 @@ class SlugTranslateHandler
     {
         $http = new Client;
 
-        $api = 'http://api.fanyi.baidu.com/api/trans/vip/tranlate?';
+        $api = 'http://api.fanyi.baidu.com/api/trans/vip/translate?';
         $appid = config('services.baidu_translate.appid');
         $key = config('services.baidu_translate.key');
         $salt = time();
@@ -31,6 +31,7 @@ class SlugTranslateHandler
             'salt' => $salt,
             'sign' => $sign,
         ]);
+
 
         $response = $http->get($api . $query);
 
